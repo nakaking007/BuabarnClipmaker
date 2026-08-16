@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>ปรับแก้คลิป</title></head>
+<body style="font-family:sans-serif; max-width:1000px; margin:30px auto; padding:20px">
+<nav style="background:#2e7d32; padding:15px; border-radius:8px; margin-bottom:20px">
+<a href="index.html" style="color:#fff; margin:0 10px; text-decoration:none">หน้าหลัก</a>
+<a href="create.html" style="color:#fff; margin:0 10px; text-decoration:none">สร้างคลิป</a>
+<a href="edit.html" style="color:#fff; margin:0 10px; text-decoration:none; background:rgba(255,255,255,0.2); padding:8px 12px; border-radius:4px">
+D:
+cd D:\BuabarnClipmaker
+
+# ==========================================================
+# 1. สร้างไฟล์เว็บไซต์ใหม่ก่อน
+# ==========================================================
+@'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BuabarnClipmaker</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f4f1; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin:0; }
+        .box { background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); width: 360px; }
+        h1 { text-align: center; color: #2e7d32; margin-bottom: 25px; font-size: 22px; }
+        .g { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 500; }
+        input { width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; }
+        button { width: 100%; padding: 12px; background: #2e7d32; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 5px; }
+        button:hover { background: #1b5e20; }
+        .err { color: red; margin-top: 12px; text-align: center; display: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🔑 เข้าสู่ระบบ</h1>
+        <div class="g"><label>ชื่อผู้ใช้</label><input type="text" id="u" placeholder="admin"></div>
+        <div class="g"><label>รหัสผ่าน</label><input type="password" id="p" placeholder="123456"></div>
+        <button onclick="login()">เข้าสู่ระบบ</button>
+        <div class="err" id="e">ชื่อหรือรหัสผ่านไม่ถูกต้อง</div>
+        <p style="text-align:center; margin-top:12px; font-size:13px; color:#666">admin / 123456</p>
+    </div>
+<script>
+const users = { admin:"123456", user1:"123456" };
+const K = "buabarn_user";
+if (sessionStorage.getItem(K)) location.href = "create.html";
+function login() {
+    let u = document.getElementById("u").value.trim();
+    let p = document.getElementById("p").value.trim();
+    if (users[u] && users[u] === p) {
+        sessionStorage.setItem(K, u);
+        location.href = "create.html";
+    } else {
+        document.getElementById("e").style.display = "block";
+    }
+}
+</script>
+</body>
+</html>
