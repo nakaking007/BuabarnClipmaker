@@ -1,12 +1,60 @@
 ﻿<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>ตัดต่อคลิป</title></head>
-<body style="font-family:sans-serif; max-width:1000px; margin:30px auto; padding:20px">
-<nav style="background:#2e7d32; padding:15px; border-radius:8px; margin-bottom:20px">
-<a href="index.html" style="color:#fff; margin:0 10px; text-decoration:none">หน้าหลัก</a>
-<a href="create.html" style="color:#fff; margin:0 10px; text-decoration:none">สร้างคลิป</a>
-<a href="edit.html" style="color:#fff; margin:0 10px; text-decoration:none">ปรับแก้คลิป</a>
-<a href="timeline.html" style="color:#fff; margin:0 10px; text-decoration:none; background:rgba(255,255,255,0.2); padding:8px 12px; border-radius:4px">ตัดต่อ</a>
-</nav>
-<h1>⏱️ ตัดต่อแบบไทม์ไลน์</h1>
-<p>หน้าตัดต่อคลิปทำงานปกติ ✅</p>
-</body></html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏱️ ตัดต่อแบบไทม์ไลน์ - BuabarnClipmaker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Noto Sans Thai', sans-serif; }
+        body { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); min-height: 100vh; }
+        .navbar {
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            padding: 16px 24px;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .navbar .nav-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; }
+        .navbar a {
+            color: #fff; text-decoration: none; padding: 10px 18px;
+            border-radius: 10px; font-weight: 500; font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover { background: rgba(255,255,255,0.25); }
+        .navbar a.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+        .content { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        .page-card { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 8px 30px rgba(46,125,50,0.15); }
+        h1 { color: #2e7d32; font-size: 28px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .tool-box { background: #f1f8e9; padding: 24px; border-radius: 14px; margin-top: 20px; border-left: 5px solid #4caf50; }
+        .tool-box h3 { color: #2e7d32; margin-bottom: 12px; font-size: 17px; }
+        .tool-box p { color: #424242; line-height: 1.6; }
+        .logout-btn { margin-top: 30px; padding: 12px 24px; background: #ef5350; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+        .logout-btn:hover { background: #e53935; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html">🏠 หน้าหลัก</a>
+            <a href="create.html">✨ สร้างคลิป</a>
+            <a href="edit.html">✏️ ปรับแก้คลิป</a>
+            <a href="timeline.html" class="active">⏱️ ตัดต่อ</a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="page-card">
+            <h1>⏱️ ตัดต่อแบบไทม์ไลน์</h1>
+            <div class="tool-box">
+                <h3>🛠️ เครื่องมือที่มี</h3>
+                <p>➕ เพิ่มแทร็ก &nbsp;|&nbsp; 🧲 ลากวางจัดเรียง &nbsp;|&nbsp; 🎞️ แยกส่วน/รวมคลิป &nbsp;|&nbsp; 🔗 เชื่อมคลิป &nbsp;|&nbsp; ▶️ ดูตัวอย่าง &nbsp;|&nbsp; 💯 ส่งออก</p>
+            </div>
+            <p style="margin-top:20px; color:#555;">ส่วนจัดการไทม์ไลน์และเครื่องมือตัดต่อจะแสดงที่นี่ ✅</p>
+            <button class="logout-btn" onclick="logout()">🚪 ออกจากระบบ</button>
+        </div>
+    </div>
+<script>
+const sessionKey = "buabarn_user";
+if (!sessionStorage.getItem(sessionKey)) location.href = "index.html";
+function logout() { sessionStorage.removeItem(sessionKey); location.href = "index.html"; }
+</script>
+</body>
+</html>

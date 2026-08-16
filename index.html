@@ -1,55 +1,140 @@
 ﻿<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>ปรับแก้คลิป</title></head>
-<body style="font-family:sans-serif; max-width:1000px; margin:30px auto; padding:20px">
-<nav style="background:#2e7d32; padding:15px; border-radius:8px; margin-bottom:20px">
-<a href="index.html" style="color:#fff; margin:0 10px; text-decoration:none">หน้าหลัก</a>
-<a href="create.html" style="color:#fff; margin:0 10px; text-decoration:none">สร้างคลิป</a>
-<a href="edit.html" style="color:#fff; margin:0 10px; text-decoration:none; background:rgba(255,255,255,0.2); padding:8px 12px; border-radius:4px">
-D:
-cd D:\BuabarnClipmaker
-
-# ==========================================================
-# 1. สร้างไฟล์เว็บไซต์ใหม่ก่อน
-# ==========================================================
-@'
-<!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>BuabarnClipmaker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuabarnClipmaker - เข้าสู่ระบบ</title>
     <style>
-        body { font-family: sans-serif; background: #f0f4f1; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin:0; }
-        .box { background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); width: 360px; }
-        h1 { text-align: center; color: #2e7d32; margin-bottom: 25px; font-size: 22px; }
-        .g { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: 500; }
-        input { width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; }
-        button { width: 100%; padding: 12px; background: #2e7d32; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 5px; }
-        button:hover { background: #1b5e20; }
-        .err { color: red; margin-top: 12px; text-align: center; display: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Sans Thai', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(46, 125, 50, 0.18);
+            width: 100%;
+            max-width: 420px;
+            transition: transform 0.3s ease;
+        }
+        .login-card:hover { transform: translateY(-5px); }
+        .login-card h1 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            font-size: 26px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .form-group { margin-bottom: 22px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #37474f;
+            font-size: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4caf50;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+        }
+        .login-btn:hover {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.35);
+        }
+        .error-msg {
+            color: #d32f2f;
+            margin-top: 16px;
+            text-align: center;
+            display: none;
+            font-size: 14px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 8px;
+        }
+        .hint-box {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #616161;
+            padding: 12px;
+            background: #f1f8e9;
+            border-radius: 10px;
+        }
+        .hint-box strong { color: #2e7d32; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>🔑 เข้าสู่ระบบ</h1>
-        <div class="g"><label>ชื่อผู้ใช้</label><input type="text" id="u" placeholder="admin"></div>
-        <div class="g"><label>รหัสผ่าน</label><input type="password" id="p" placeholder="123456"></div>
-        <button onclick="login()">เข้าสู่ระบบ</button>
-        <div class="err" id="e">ชื่อหรือรหัสผ่านไม่ถูกต้อง</div>
-        <p style="text-align:center; margin-top:12px; font-size:13px; color:#666">admin / 123456</p>
+    <div class="login-card">
+        <h1>🔐 เข้าสู่ระบบ</h1>
+        <div class="form-group">
+            <label for="username">ชื่อผู้ใช้</label>
+            <input type="text" id="username" placeholder="กรอกชื่อผู้ใช้">
+        </div>
+        <div class="form-group">
+            <label for="password">รหัสผ่าน</label>
+            <input type="password" id="password" placeholder="กรอกรหัสผ่าน">
+        </div>
+        <button class="login-btn" onclick="login()">เข้าสู่ระบบ</button>
+        <div class="error-msg" id="errorBox">❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</div>
+        <div class="hint-box">
+            บัญชีทดลองใช้งาน<br>
+            <strong>ชื่อผู้ใช้:</strong> admin &nbsp;|&nbsp; <strong>รหัสผ่าน:</strong> 123456
+        </div>
     </div>
 <script>
-const users = { admin:"123456", user1:"123456" };
-const K = "buabarn_user";
-if (sessionStorage.getItem(K)) location.href = "create.html";
+const users = { admin: "123456", user1: "123456" };
+const sessionKey = "buabarn_user";
+if (sessionStorage.getItem(sessionKey)) location.href = "create.html";
 function login() {
-    let u = document.getElementById("u").value.trim();
-    let p = document.getElementById("p").value.trim();
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("errorBox");
     if (users[u] && users[u] === p) {
-        sessionStorage.setItem(K, u);
+        sessionStorage.setItem(sessionKey, u);
         location.href = "create.html";
     } else {
-        document.getElementById("e").style.display = "block";
+        errorBox.style.display = "block";
     }
 }
 </script>
